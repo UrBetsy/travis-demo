@@ -1,14 +1,21 @@
-language: node_js
-node_js:
-  - "node"
+#!/usr/bin/env sh
 
-cache: npm
+# 确保脚本抛出遇到的错误
+set -e
 
-script: npm run build
+# 
+npm run build
 
-deploy:
-provider: pages
-skip_cleanup: true
-local_dir: dist
-on:
-  branch: master
+# 进入生成的文件夹
+cd dist
+
+# 如果是发布到自定义域名
+# echo 'www.example.com' > CNAME
+
+git init
+git add -A
+git commit -m 'deploy'
+
+git push -f git@github.com:Urbetsy/travis-demo.git master:gh-pages
+
+cd -
