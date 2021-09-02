@@ -36,6 +36,7 @@ export default {
   props: {
     msg: String
     // sec
+    // thir
   }
 }
 </script>
