@@ -7,7 +7,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+// add doc
 export default {
   name: 'App',
   components: {
