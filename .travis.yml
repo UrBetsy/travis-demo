@@ -1,11 +1,27 @@
-language: node_js  # 设置语言
-
+language: node_js
 node_js:
-  - 12 # 指定node.js版本
+  - "8"
 
-cache: yarn # 开启缓存
+cache:
+  directories:
+    - "node_modules"
+
+branches:
+  only:
+  - master
 
 install:
-  - yarn
+  - npm install
+  - npm run build
+
 script:
-  - yarn deploy
+  - echo "Skipping tests"
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
+  target-branch: gh-pages
+  local-dir: dist
+  on:
+    branch: master
